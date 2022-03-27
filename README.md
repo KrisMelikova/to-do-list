@@ -1,4 +1,4 @@
-##TO-DO LIST
+## It's TO-DO LIST
 
-###Hello!
-
+## HOW TO RUN
+python manage.py runserver
