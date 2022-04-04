@@ -18,8 +18,8 @@ class ProjectViewSet(ModelViewSet):
     serializer_class = ProjectSerializer
     pagination_class = ProjectLimitOffsetPagination
 
-    def get_queryset(self):
-        return Project.objects.filter(title__contains='DRF')
+    # def get_queryset(self):
+    #     return Project.objects.filter(title__contains='DRF')
 
 
 class ToDoViewSet(ModelViewSet):
@@ -27,8 +27,8 @@ class ToDoViewSet(ModelViewSet):
     serializer_class = ToDoSerializer
     pagination_class = ToDoLimitOffsetPagination
 
-    def get_queryset(self):
-        return ToDo.objects.filter(text__contains='python')
+    # def get_queryset(self):
+    #     returnToDo.objects.filter(text__contains='python')
 
     def perform_destroy(self, instance):
         instance.active = False

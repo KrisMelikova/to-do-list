@@ -1,4 +1,7 @@
 ## It's TO-DO LIST
 
 ## HOW TO RUN
-python manage.py runserver
+
+Backend: python manage.py runserver
+
+Frontend: cd frontend and npm run start
