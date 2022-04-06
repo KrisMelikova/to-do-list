@@ -14,6 +14,7 @@ class Command(BaseCommand):
         count = kwargs.get('count', 3)
 
         PortalUser.objects.create_superuser('Anna', 'anna@karenina.mail.ru', '1234')
+        PortalUser.objects.create_superuser('Ivan', 'ivan@karenin.mail.ru', '567')
 
         for i in range(count):
             PortalUser.objects.create_user(f'User{i}', f'user{i}@test.ru', '1234')
