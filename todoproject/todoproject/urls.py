@@ -46,8 +46,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
-    path('api/v1/users', include('userapp.urls', namespace='v1')),
-    path('api/v2/users', include('userapp.urls', namespace='v2')),
-
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # path('api/v1/users', include('userapp.urls', namespace='v1')),
+    # path('api/v2/users', include('userapp.urls', namespace='v2')),
+    #
+    # path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
