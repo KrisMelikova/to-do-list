@@ -5,7 +5,7 @@ from users.serializers import PortalUserModelSerializer
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    users = PortalUserModelSerializer()
+    users = PortalUserModelSerializer(required=False)
 
     class Meta:
         model = Project

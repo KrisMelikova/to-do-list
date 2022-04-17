@@ -1,5 +1,4 @@
 from django.utils.timezone import now
-from mixer.backend.django import mixer
 from django.core.management.base import BaseCommand
 
 from todo.models import ToDo, Project
