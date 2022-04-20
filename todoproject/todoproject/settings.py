@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'users',
     'todo',
     'userapp',
+    'graphene_django',
 
 ]
 
@@ -148,4 +149,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+}
+
+GRAPHENE = {
+    "SCHEMA": "todoproject.schema.schema"
 }
