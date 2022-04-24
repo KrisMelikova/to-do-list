@@ -12,6 +12,8 @@ import UserList from './components/User.js';
 
 import Cookies from "universal-cookie";
 import LoginForm from "./components/Auth.js";
+import ProjectForm from "./components/ProjectForm.js";
+import ToDoForm from "./components/ToDoForm.js";
 
 import {HashRouter, Route, Link, Switch, Redirect} from 'react-router-dom';
 
@@ -25,6 +27,46 @@ class App extends React.Component {
             'token': ''
         }
     }
+
+    createProject(title, project_link) {
+       const headers = this.get_headers()
+       const data = {title: title}
+       axios.post(`http://127.0.0.1:8000/api/project/`, data, {headers, headers})
+           .then(response => {
+                this.load_data()
+           }).catch(error => console.log(error))
+    }
+
+
+    deleteProject(id) {
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/project/${id}`, {headers, headers})
+            .then(response => {
+                this.setState({project: this.state.project.filter((item)=>item.id !== id)})
+            }).catch(error => console.log(error))
+    }
+
+
+
+    createToDo(id, text) {
+       const headers = this.get_headers()
+       const data = {id: id}
+       axios.post(`http://127.0.0.1:8000/api/todo/`, data, {headers, headers})
+           .then(response => {
+                this.load_data()
+           }).catch(error => console.log(error))
+    }
+
+
+    deleteToDo(id) {
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers, headers})
+            .then(response => {
+                this.setState({todo: this.state.todo.filter((item)=>item.id !== id)})
+            }).catch(error => console.log(error))
+    }
+
+
 
     load_data() {
         const headers = this.get_headers()
@@ -145,8 +187,12 @@ class App extends React.Component {
                 </nav>
                 <Switch>
                     <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
-                    <Route exact path='/project' component={() =>  <ProjectList projects={this.state.projects}/>}/>
-                    <Route exact path='/todo' component={() => <ToDoList todos={this.state.todos}/>}/>
+                    <Route exact path='/project' component={() =>  <ProjectList projects={this.state.projects} deleteProject={(id) => this.deleteProject(id)} />}/>
+                    <Route exact path='/todo' component={() => <ToDoList todos={this.state.todos} deleteToDo={(id) => this.deleteToDo(id)}/>}/>
+
+                    <Route exact path='/project/create' component={() => <ProjectForm project={this.state.project} createProject={(title, project_link) => this.createProject(title, project_link)}/>}/>
+                    <Route exact path='/todo/create' component={() => <ToDoForm todo={this.state.todo} createToDo={(id, text) => this.createToDo(id, text)}/>}/>
+
 
                     <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
